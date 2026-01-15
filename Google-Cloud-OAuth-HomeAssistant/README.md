@@ -1,4 +1,4 @@
-                                                                           Home Assistant Google Cloud Integration
+                                                         Home Assistant Google Cloud Integration
 
 This is an end-to-end design and implementation of a Google Cloud–backed smart-home integration, connecting a Google Nest Thermostat to a locally hosted Home Assistant instance using Google’s official Smart Device Management (SDM) platform. I approached this as an infrastructure and identity integration exercise rather than a simple device pairing, intentionally treating it as a hands-on cloud architecture project that required careful attention to authentication, API enablement, event-driven messaging, and secure service-to-service communication.
 
