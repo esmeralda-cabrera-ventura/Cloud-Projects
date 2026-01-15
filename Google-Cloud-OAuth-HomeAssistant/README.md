@@ -14,49 +14,50 @@ The final architecture is a clean example of a modern cloud-to-local hybrid syst
 
          ** END-TO-END ARCHITECTURAL WORKFLOW **
          
-             ┌─────────────────────────┐
-             │     Nest Thermostat     │
-             └────────────┬────────────┘
-                          │
-                          ▼
-                ┌─────────────────────────┐
-                │    Google Nest / SDM    │
-                │ Backend (Google-managed)│
-                └────────────┬────────────┘
-                             │
-            ┌────────────────┴──────────────────┐
-            │                                   │
-            ▼                                   ▼
-┌──────────────────────────┐          ┌──────────────────────────┐
-│      SDM REST API        │          │    Cloud Pub/Sub Topic   │
-│   (Commands \& Queries)  │          │   (Event-driven updates) │
-└───────────── ────────────┘          └─────────────┬────────────┘
-             │                                      │
-             │                                      ▼
-             │                         ┌──────────────────────────┐
-             │                         │    Pub/Sub Subscription  │
-             │                         └─────────────┬────────────┘
-             │                                       │
-             ▼                                       ▼
-     ┌────────────────────────────────────────────────────┐
-     │                   Home Assistant (Local)             
-     │  - OAuth token storage                               
-     │  - Consumes Pub/Sub events                           
-     │  - Issues SDM control commands                       
-     └────────────────────────────────────────────────────┘
-                                ▲
-                                │
-                 OAuth 2.0 Authorization Code Flow
-                                │
+                 ┌─────────────────────────┐
+                 │       Nest Thermostat   │
+                 └────────────┬────────────┘
+                              │
+                              ▼
                  ┌──────────────────────────┐
-                 │   Google OAuth / Identity  
-                 │   Platform                 
-                 └──────────────────────────┘
+                 │   Google Nest / SDM      │
+                 │  Backend (Google-managed)│
+                 └─────────────┬────────────┘
+                               │
+          ┌────────────────────┴────────────────────┐
+          │                                         │
+          ▼                                         ▼
+┌──────────────────────────┐          ┌──────────────────────────┐
+│        SDM REST API      │          │   Cloud Pub/Sub Topic     │
+│ (Commands & Queries)     │          │ (Event-driven updates)    │
+│ (Invoked by Home         │          └─────────────┬────────────┘
+│  Assistant via OAuth)    │                        │
+└──────────────────────────┘                        ▼
+              │                         ┌──────────────────────────┐
+              │                         │   Pub/Sub Subscription   │
+              │                         └─────────────┬────────────┘
+              │                                       │
+              ▼                                       ▼
+      ┌────────────────────────────────────────────────────┐
+      │            Home Assistant (Local)                  │
+      │  - OAuth token storage                             │
+      │  - Consumes Pub/Sub events                         │
+      │  - Issues SDM control commands                     │
+      └────────────────────────────────────────────────────┘
+                               ▲
+                               │
+              OAuth 2.0 Authorization Code Flow
+                               │
+                ┌──────────────────────────┐
+                │   Google OAuth / Identity│
+                │   Platform               │
+                └──────────────────────────┘
 
-┌──────────────────────────┐
-│   Device Access Project          
-│ (SDM Scope \& Device Trust) 
-└─────────────┬────────────┘
-              ▼
-        Authorizes SDM API
+                ┌──────────────────────────┐
+                │   Device Access Project  │
+                │   (SDM Scope & Device    │
+                │    Trust Policy)         │
+                └─────────────┬────────────┘
+                              ▼
+                 Scopes OAuth Client for SDM
 
