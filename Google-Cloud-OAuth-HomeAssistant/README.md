@@ -12,7 +12,7 @@ To support real-time state updates rather than periodic polling, I integrated Go
 
 The final architecture is a clean example of a modern cloud-to-local hybrid system: Nest devices communicate exclusively with Google’s backend; Google Cloud acts as the secure broker through OAuth, SDM APIs, and Pub/Sub; and Home Assistant operates as a locally hosted control plane that consumes cloud events and issues authenticated commands back through the same pipeline. The result is a fully functional, subscription-free Nest integration with real-time updates, strong identity guarantees, and minimal operational overhead, while also serving as a practical demonstration of my ability to design, troubleshoot, and implement identity-driven, event-based architectures on Google Cloud.
 
-         ** END-TO-END ARCHITECTURAL WORKFLOW **
+         ## END-TO-END ARCHITECTURAL WORKFLOW 
          
                  ┌─────────────────────────┐
                  │       Nest Thermostat   │
