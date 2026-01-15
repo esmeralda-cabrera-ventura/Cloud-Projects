@@ -28,8 +28,8 @@ The final architecture is a clean example of a modern cloud-to-local hybrid syst
           │                                         │
           ▼                                         ▼
 ┌──────────────────────────┐          ┌──────────────────────────┐
-│        SDM REST API      │          │   Cloud Pub/Sub Topic     │
-│ (Commands & Queries)     │          │ (Event-driven updates)    │
+│        SDM REST API      │          │   Cloud Pub/Sub Topic    │
+│ (Commands & Queries)     │          │ (Event-driven updates)   │
 │ (Invoked by Home         │          └─────────────┬────────────┘
 │  Assistant via OAuth)    │                        │
 └──────────────────────────┘                        ▼
